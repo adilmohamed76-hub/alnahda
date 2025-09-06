@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/alnahda-logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام النهضة لإدارة الأعمال</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <!-- Add JsBarcode library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <style>
+      :root {
+        --background-light: #f3f4f6; /* Lighter Gray */
+        --background-dark: #0d1117;  /* Very Dark Blue/Gray */
+        --card-light: #ffffff;
+        --card-dark: #161b22;
+        --border-light: #e5e7eb;
+        --border-dark: #30363d;
+        --text-primary-light: #111827;
+        --text-primary-dark: #e6edf3;
+        --text-secondary-light: #6b7280;
+        --text-secondary-dark: #8b949e;
+        
+        --primary-color: #3b82f6; /* Blue 500 */
+        --primary-color-hover: #2563eb; /* Blue 600 */
+        --accent-green: #10b981; /* Emerald 500 */
+        --accent-red: #ef4444; /* Red 500 */
+        --accent-blue: #0ea5e9; /* Sky 500 */
+      }
+      body {
+        font-family: 'Cairo', sans-serif;
+        background-color: var(--background-light);
+        color: var(--text-primary-light);
+      }
+      html.dark body {
+        background-color: var(--background-dark);
+        color: var(--text-primary-dark);
+      }
+      /* Smooth transitions for all elements */
+      * {
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+      }
+      .print-only {
+        display: none;
+      }
+      
+      @media print {
+        /* Barcode printing styles */
+        body.printing-barcode > *:not(.barcode-print-area) {
+          display: none !important;
+        }
+        .barcode-print-area {
+          display: block !important;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        /* New Barcode Sheet printing styles */
+        body.printing-barcodes-body > *:not(.barcode-sheet-print-area) {
+          display: none !important;
+        }
+        .barcode-sheet-print-area {
+          display: block !important;
+          margin: 0;
+          padding: 0;
+        }
+        
+        .no-print {
+          display: none !important;
+        }
+        .print-only {
+          display: block !important;
+        }
+        body {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+        }
+        body > #root > div {
+            display: block !important;
+        }
+         body > #root > div > .no-print {
+            display: none !important;
+        }
+        main {
+          padding: 0 !important;
+          overflow: visible !important;
+          height: auto !important;
+        }
+        .bg-\[var\(--card-light\)\] {
+          box-shadow: none !important;
+          border: none !important;
+          padding: 0 !important;
+        }
+        table {
+          font-size: 10px;
+        }
+      }
+
+      .ticker-wrap {
+        width: 100%;
+        overflow: hidden;
+        height: 2.5rem; /* Match button height in header */
+        background-color: transparent;
+        padding-left: 100%;
+        box-sizing: content-box;
+      }
+
+      .ticker-wrap .ticker {
+        display: inline-block;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        white-space: nowrap;
+        padding-right: 100%;
+        box-sizing: content-box;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-name: ticker;
+        animation-duration: 20s;
+      }
+
+      .ticker-wrap .ticker span {
+        display: inline-block;
+        padding: 0 1rem;
+        font-weight: bold;
+      }
+
+      @keyframes ticker {
+        0% { transform: translate3d(0, 0, 0); }
+        100% { transform: translate3d(-100%, 0, 0); }
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.17.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.1.2",
+    "vite": "https://aistudiocdn.com/vite@^7.1.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.0.2"
+  }
+}
+</script>
+</head>
+  <body class="bg-[var(--background-light)] dark:bg-[var(--background-dark)]">
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
